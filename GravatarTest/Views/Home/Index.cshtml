@@ -1,0 +1,53 @@
+﻿@model IRepository
+
+@{
+    ViewBag.Title = "Gravatar test app";
+    Layout = "_Layout";
+}
+
+<h2 class="pt-2 pb-2 text-center">Users</h2>
+<table class="table table-bordered table-striped">
+    <thead class="thead-inverse">
+        <tr>
+            <th>Gravatar</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+        <tr>
+            @*
+                gravatar-default-image="<DefaultImage Constant>"
+
+                The default image to use if the user does not have a Gravatar setup,
+                can either be a url to an image or one of the DefaultImage* constants
+
+                public const string DefaultImage404 = "404";
+                public const string DefaultImageMysteryMan = "mm";
+                public const string DefaultImageIdenticon = "identicon";
+                public const string DefaultImageMonsterId = "monsterid";
+                public const string DefaultImageWavatar = "wavatar";
+                public const string DefaultImageRetro = "retro";
+                public const string DefaultImageBlank = "blank";
+
+                see code: https://github.com/jkommer/GravatarHelper/blob/master/src/GravatarHelper.Common/GravatarHelper.cs
+                see demo: https://www.cambiaresearch.com/articles/404466/the-cambia.gravatar-nuget-package
+            *@
+
+                <td>
+                    <img gravatar-email="@user.Email"
+                         gravatar-size="80"
+                         gravatar-force-default="true"
+                         gravatar-default-image="identicon"
+                         alt="@user.Name" />
+                </td>
+                <td>@user.Name</td>
+                <td>@user.Age</td>
+                <td>@user.Email</td>
+        </tr>
+        }
+    </tbody>
+</table>
